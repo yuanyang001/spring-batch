@@ -19,7 +19,7 @@ public class DemoListener implements JobExecutionListener {
 
     private long startTime;
 
-//    @Resource
+    @Resource
     private ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
     @Override
@@ -30,13 +30,13 @@ public class DemoListener implements JobExecutionListener {
 
     @Override
     public void afterJob(JobExecution jobExecution) {
-//        log.info("JOB STATUS : {}", jobExecution.getStatus());
-//        if (jobExecution.getStatus() == BatchStatus.COMPLETED) {
-//            log.info("JOB FINISHED");
-//            threadPoolTaskExecutor.destroy();
-//        } else if (jobExecution.getStatus() == BatchStatus.FAILED) {
-//            log.info("JOB FAILED");
-//        }
+        log.info("JOB STATUS : {}", jobExecution.getStatus());
+        if (jobExecution.getStatus() == BatchStatus.COMPLETED) {
+            log.info("JOB FINISHED");
+            threadPoolTaskExecutor.destroy();
+        } else if (jobExecution.getStatus() == BatchStatus.FAILED) {
+            log.info("JOB FAILED");
+        }
         log.info("===>任务结束 : {}ms" , (System.currentTimeMillis() - startTime));
     }
 }
